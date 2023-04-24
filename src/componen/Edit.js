@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Autocomplete } from "@mui/material";
 import { TextField } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
@@ -15,6 +15,7 @@ function Edit() {
   const [listKecamatan, setListKecamatan] = useState([]);
   const { id } = useParams();
   const ref0 = useRef();
+  let navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -57,7 +58,7 @@ function Edit() {
       .then((res) => {
         console.log(res);
         alert("Berhasil di Update");
-        window.location.reload();
+        navigate('/');
       })
       .catch((error) => {
         console.log(error);
@@ -161,17 +162,6 @@ function Edit() {
         </div>
 
         <div className="mb-3">
-          {/* <label htmlFor="kabupaten" className="form-label">
-            Kota/Kabupaten
-          </label>
-          <input
-            name="kabupaten"
-            value={data.kabupaten ? data.kabupaten : ""}
-            onChange={handleChange}
-            type="text"
-            className="form-control"
-            aria-describedby="kabupaten"
-          /> */}
           <TextField
           id="kota_kabupaten"
           select
@@ -190,17 +180,6 @@ function Edit() {
         </div>
 
         <div className="mb-3">
-          {/* <label htmlFor="kecamatan" className="form-label">
-            Kecamatan
-          </label>
-          <input
-            name="kecamatan"
-            value={data.kecamatan ? data.kecamatan : ""}
-            onChange={handleChange}
-            type="text"
-            className="form-control"
-            aria-describedby="kecamatan"
-          /> */}
           <TextField
           id="kecamatan"
           select
